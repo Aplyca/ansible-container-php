@@ -1,0 +1,50 @@
+php:
+  modules:
+    - cli
+    - fpm
+    - mbstring
+    - curl
+    - soap
+    - xsl
+    - intl
+    - mysql
+    - imagick
+    - gd
+    - mcrypt
+    - ldap
+  packages:
+    - imagemagick
+  ini:
+    ALL:
+      expose_php: 'Off'
+      variables_order: 'EGPCS'
+      realpath_cache_size: 8192K
+      realpath_cache_ttl: 3600
+      Date:
+       timezone: 'America/New_York'
+      opcache:
+        max_accelerated_files: 20000
+        memory_consumption: 512
+        enable_file_override: 1
+        interned_strings_buffer: 16
+        revalidate_path: 1
+        revalidate_freq: 0
+    fpm:
+      post_max_size: '120M'
+      upload_max_filesize: '120M'
+      memory_limit: '512M'
+      max_execution_time: '120'
+  fpm:
+    global:
+      daemonize: 'no'
+    www:
+      user: www-data
+      group: www-data
+      listen: 9000
+      listen.owner: www-data
+      listen.group: www-data
+      pm: dynamic
+      pm.max_children: 5
+      pm.start_servers: 2
+      pm.min_spare_servers: 1
+      pm.max_spare_servers: 3

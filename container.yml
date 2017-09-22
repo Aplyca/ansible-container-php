@@ -1,0 +1,21 @@
+version: "2"
+settings:
+  project_name: container
+  conductor_base: ubuntu:latest
+  vars_files:
+    - vars.yml
+services:
+  php:
+    container_name: php
+    hostname: php
+    from: "ubuntu:latest"
+    roles:
+      - Aplyca.Essentials
+      - Aplyca.PHP
+    working_dir: '/var/www'
+    expose:
+      - 9000
+    command: ["php-fpm5.6"]
+    entrypoint: ["docker-entrypoint"]
+    user: ubuntu
+registries: {}
