@@ -23,7 +23,7 @@ php:
       Date:
        timezone: 'America/New_York'
       opcache:
-        max_accelerated_files: 20000
+        max_accelerated_files: 30000
         memory_consumption: 512
         enable_file_override: 1
         interned_strings_buffer: 16

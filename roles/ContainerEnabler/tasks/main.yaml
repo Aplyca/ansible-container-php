@@ -1,0 +1,10 @@
+---
+- raw: "apt-get update"
+- raw: "apt-get -y install sudo libssl-dev"
+
+- name: Execute role
+  include_role:
+    name: Aplyca.PHP
+
+- raw: "SUDO_FORCE_REMOVE=yes apt-get purge -y --auto-remove sudo libssl-dev language-pack-en-base"
+- raw: "rm -rf /var/lib/apt/lists/*"
