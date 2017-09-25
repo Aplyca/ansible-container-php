@@ -1,6 +1,19 @@
 ---
-- raw: "apt-get update"
-- raw: "apt-get -y install sudo libssl-dev"
+- name: Prepare Alpine based container
+  apk:
+    name: sudo
+    update_cache: yes
+  when: ansible_os_family == 'Alpine'
+
+- name: Ensure PHP modules are present using apt
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    install_recommends: no
+  with_items:
+    - sudo
+    - libssl-dev
+  when: ansible_os_family == 'Debian'
 
 - name: Execute role
   include_role:
